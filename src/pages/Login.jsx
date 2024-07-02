@@ -69,7 +69,7 @@ function Login() {
                   onChange={(e) => setUsername(e.target.value)}
                   onFocus={() => setIsUsernameFocused(true)}
                   onBlur={() => setIsUsernameFocused(false)}
-                  className="outline-0 relative z-10 bg-transparent text-2xl"
+                  className="outline-0 relative z-10 bg-transparent text-2xl w-full"
                   type="text"
                   value={username}
                 />
@@ -94,7 +94,7 @@ function Login() {
                   onChange={(e) => setPassword(e.target.value)}
                   onFocus={() => setIsPasswordFocused(true)}
                   onBlur={() => setIsPasswordFocused(false)}
-                  className="outline-0 relative z-10 bg-transparent text-2xl"
+                  className="outline-0 relative z-10 bg-transparent text-2xl w-full"
                   type="password"
                 />
                 {/* <span className="absolute right-0 top-2 text-colorGreyText text-md">
