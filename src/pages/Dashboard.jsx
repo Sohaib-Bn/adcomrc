@@ -68,7 +68,7 @@ function DepartmentLink({ data: { link, label } }) {
       target="_blank"
       rel="noreferrer"
       href={link}
-      className="flex uppercase flex-col items-center gap-2 justify-center border-[1.5px] border-colorGreyText py-4 px-3 text-colorGreyText hover:bg-colorBrand transition-all hover:text-colorWhite hover:border-colorBrand hover:-translate-y-2 hover:shadow-xl focus:shadow-sm focus:-translate-y-1"
+      className="flex uppercase flex-col items-center gap-2 justify-center border-[1.5px] border-colorGreyText py-4 px-3 text-colorGreyText hover:bg-colorBrand transition-all hover:text-colorWhite hover:border-colorBrand hover:-translate-y-2 hover:shadow-xl active:shadow-sm active:-translate-y-1"
     >
       <span className="font-extrabold text-[1.5rem] 2xl:text-[1.6rem] leading-[1]">
         {label}
