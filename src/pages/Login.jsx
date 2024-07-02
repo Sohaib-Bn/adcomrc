@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useAuthContext } from "../ui/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { FaUser, FaLock } from "react-icons/fa6";
 
 function Login() {
   const [isUsernameFocused, setIsUsernameFocused] = useState(false);
@@ -72,6 +73,9 @@ function Login() {
                   type="text"
                   value={username}
                 />
+                <span className="absolute right-0 top-2 text-colorGreyText">
+                  <FaUser />
+                </span>
               </div>
               <div className="border-b-[2.5px] border-b-colorBrand pb-5 text-xl relative">
                 <label
@@ -93,6 +97,9 @@ function Login() {
                   className="outline-0 relative z-10 bg-transparent text-2xl"
                   type="password"
                 />
+                <span className="absolute right-0 top-2 text-colorGreyText text-md">
+                  <FaLock />
+                </span>
                 {!isAuthenticated && (
                   <p className="font-midium text-[1.1rem] absolute -bottom-10 pl-2 text-colorError">
                     Password is incorrect

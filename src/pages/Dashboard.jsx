@@ -65,6 +65,8 @@ export default Dashboard;
 function DepartmentLink({ data: { link, label } }) {
   return (
     <a
+      target="_blank"
+      rel="noreferrer"
       href={link}
       className="flex uppercase flex-col items-center gap-2 justify-center border-2 border-colorGreyText py-4 px-3 text-colorGreyText hover:bg-colorBrand transition-all hover:text-colorWhite hover:border-colorBrand hover:-translate-y-2 hover:shadow-xl focus:shadow-sm focus:-translate-y-1"
     >
