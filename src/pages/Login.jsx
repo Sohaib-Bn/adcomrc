@@ -19,7 +19,7 @@ function Login() {
   const handleSubmit = function (e) {
     e.preventDefault();
     login();
-    navigate("/dashboard");
+    navigate("/system");
   };
 
   return (
@@ -73,9 +73,9 @@ function Login() {
                   type="text"
                   value={username}
                 />
-                {/* <span className="absolute right-0 top-2 text-colorGreyText">
+                <span className="absolute right-0 top-2 text-colorBrand pr-2 ">
                   <FaUser />
-                </span> */}
+                </span>
               </div>
               <div className="border-b-[2.5px] border-b-colorBrand pb-5 text-xl relative">
                 <label
@@ -97,9 +97,9 @@ function Login() {
                   className="outline-0 relative z-10 bg-transparent text-2xl w-full"
                   type="password"
                 />
-                {/* <span className="absolute right-0 top-2 text-colorGreyText text-md">
+                <span className="absolute right-0 top-2 text-colorBrand pr-2 text-md">
                   <FaLock />
-                </span> */}
+                </span>
                 {!isAuthenticated && (
                   <p className="font-midium text-[1.1rem] absolute -bottom-10 pl-2 text-colorError">
                     Password is incorrect
