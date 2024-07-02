@@ -1,5 +1,5 @@
 export const DEPARTEMENT = [
-  { label: "task & chat", link: "/http://shopillo.store/" },
+  { label: "task & chat", link: "http://shopillo.store/" },
   { label: "opperation", link: "/" },
   { label: "report", link: "/" },
   { label: "business", link: "/" },
