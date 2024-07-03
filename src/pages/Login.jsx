@@ -1,25 +1,29 @@
 import { useState } from "react";
-import { useAuthContext } from "../ui/AuthContext";
-import { useNavigate } from "react-router-dom";
 import { FaUser, FaLock } from "react-icons/fa6";
+import { useLogin } from "./useLogin";
 
 function Login() {
   const [isUsernameFocused, setIsUsernameFocused] = useState(false);
   const [isPasswordFocused, setIsPasswordFocused] = useState(false);
-  const {
-    username,
-    setUsername,
-    password,
-    setPassword,
-    login,
-    isAuthenticated,
-  } = useAuthContext();
-  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const { isPending, login } = useLogin();
 
   const handleSubmit = function (e) {
     e.preventDefault();
-    login();
-    navigate("/system");
+    login(
+      { email, password },
+      {
+        onSuccess: () => {
+          setEmail("");
+          setPassword("");
+        },
+        onError: () => {
+          setPassword("");
+        },
+      }
+    );
   };
 
   return (
@@ -58,20 +62,20 @@ function Login() {
                   className={`font-medium text-colorGreyText absolute transition-all ${
                     isUsernameFocused
                       ? "text-[1.3rem] translate-y-[-27px]"
-                      : username
+                      : email
                       ? "text-[1.3rem] translate-y-[-27px]"
                       : "text-[1.55rem]"
                   }`}
                 >
-                  Username
+                  Email
                 </label>
                 <input
-                  onChange={(e) => setUsername(e.target.value)}
+                  onChange={(e) => setEmail(e.target.value)}
                   onFocus={() => setIsUsernameFocused(true)}
                   onBlur={() => setIsUsernameFocused(false)}
-                  className="outline-0 relative z-10 bg-transparent text-2xl w-full"
+                  className="outline-0 relative z-10 bg-transparent text-xl w-full"
                   type="text"
-                  value={username}
+                  value={email}
                 />
                 <span className="absolute right-0 top-2 text-colorBrand pr-2 ">
                   <FaUser />
@@ -94,20 +98,23 @@ function Login() {
                   onChange={(e) => setPassword(e.target.value)}
                   onFocus={() => setIsPasswordFocused(true)}
                   onBlur={() => setIsPasswordFocused(false)}
-                  className="outline-0 relative z-10 bg-transparent text-2xl w-full"
+                  className="outline-0 relative z-10 bg-transparent text-xl w-full"
                   type="password"
                 />
                 <span className="absolute right-0 top-2 text-colorBrand pr-2 text-md">
                   <FaLock />
                 </span>
-                {!isAuthenticated && (
+                {/* {!isAuthenticated && (
                   <p className="font-midium text-[1.1rem] absolute -bottom-10 pl-2 text-colorError">
                     Password is incorrect
                   </p>
-                )}
+                )} */}
               </div>
 
-              <button className="mt-[0.5rem] rounded-full w-[75%] m-auto px-4 py-3 bg-colorBrand font-semibold text-[2rem] text-colorWhite transition-all hover:bg-colorBrandHover">
+              <button
+                disabled={!email || !password || isPending}
+                className="mt-[0.5rem] rounded-full w-[75%] m-auto px-4 py-3 bg-colorBrand font-semibold text-[2rem] text-colorWhite transition-all hover:bg-colorBrandHover"
+              >
                 Login
               </button>
             </form>

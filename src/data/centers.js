@@ -1,4 +1,4 @@
-export const DEPARTEMENT = [
+export const CENTERS = [
   { label: "task & chat", link: "http://shopillo.store/" },
   { label: "opperation", link: "https://www.youtube.com/" },
   { label: "report", link: "https://www.facebook.com" },

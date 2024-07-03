@@ -34,6 +34,10 @@
     cursor: pointer;
   }
 
+  input[type="checkbox"] {
+    accent-color: #e54f35;
+  }
+
   *:disabled {
     cursor: not-allowed;
   }

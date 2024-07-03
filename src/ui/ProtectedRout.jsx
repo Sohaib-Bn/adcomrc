@@ -1,18 +1,27 @@
 import { useNavigate } from "react-router-dom";
-import { useAuthContext } from "./AuthContext";
 import { useEffect } from "react";
+import SpinnerFullPage from "./SpinnerFullPage";
+import { useUser } from "../pages/useUser";
 
-function ProtectedRout({ children }) {
-  const { isAuthenticated } = useAuthContext();
+function ProtectedRoute({ children }) {
   const navigate = useNavigate();
 
+  // 1. LOADING CURRENT USER
+  const { isLoading, isAuthonticated } = useUser();
+
+  // 2. REDIRECT TO LOGIN PAGE IF USER IS'T AUTHORIZED
   useEffect(() => {
-    if (!isAuthenticated) navigate("/login");
+    if (!isLoading && !isAuthonticated) {
+      navigate("/login");
+    }
+  }, [isLoading, isAuthonticated, navigate]);
 
-    localStorage.setItem("isAuthenticated", isAuthenticated);
-  }, [isAuthenticated, navigate]);
+  // 3. RETURN SPINNER WHILE LOAIDNG
+  if (isLoading) return <SpinnerFullPage />;
 
-  return isAuthenticated ? children : null;
+  // 4. RETURN CONTENT IF USER IS AUTHORIZED
+
+  return isAuthonticated ? children : null;
 }
 
-export default ProtectedRout;
+export default ProtectedRoute;
