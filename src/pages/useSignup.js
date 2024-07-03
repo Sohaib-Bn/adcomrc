@@ -6,7 +6,7 @@ export function useSignup() {
   const { isPending, mutate: signup } = useMutation({
     mutationFn: singupUser,
     onSuccess: () => {
-      toast.success("Verify the email address");
+      toast.success("Employee have sucessfully added");
     },
     onError: (err) => toast.error(err.message),
   });
