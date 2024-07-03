@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FaUser, FaLock } from "react-icons/fa6";
 import { useLogin } from "./useLogin";
+import SpinnerMini from "../ui/SpinnerMini";
 
 function Login() {
   const [isUsernameFocused, setIsUsernameFocused] = useState(false);
@@ -113,9 +114,9 @@ function Login() {
 
               <button
                 disabled={!email || !password || isPending}
-                className="mt-[0.5rem] rounded-full w-[75%] m-auto px-4 py-3 bg-colorBrand font-semibold text-[2rem] text-colorWhite transition-all hover:bg-colorBrandHover"
+                className="mt-[0.5rem] rounded-full w-[75%] m-auto px-4 py-3 bg-colorBrand font-semibold text-[2rem] text-colorWhite transition-all hover:bg-colorBrandHover flex items-center justify-center gap-3"
               >
-                Login
+                Login {isPending && <SpinnerMini />}
               </button>
             </form>
           </div>
