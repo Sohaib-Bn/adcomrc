@@ -49,7 +49,6 @@ function Signup() {
               onChange={(e) => setEmployeePassword(e.target.value)}
               className="px-5 py-3 text-[1.3rem] bg-gray-100 outline-0 w-full"
               type="password"
-              autoComplete="current-password"
               value={employeePassword}
             />
           </div>
