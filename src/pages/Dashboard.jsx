@@ -141,7 +141,7 @@ function CenterButton({ url, name, id }) {
         </button>
       </Modal.Open>
       <Modal.Window name={name}>
-        <div className="p-8 flex flex-col gap-y-8">
+        <div className="p-11 flex flex-col gap-y-8">
           <h1 className="font-bold text-5xl text-colorGreyText uppercase">
             {name} center
           </h1>
@@ -166,7 +166,7 @@ function CenterSubLink({ url, name }) {
       target="_blank"
       rel="noreferrer"
       href={url}
-      className="flex uppercase flex-col items-center gap-2 justify-center border-[1.5px] border-colorGreyText py-4 px-3 text-colorGreyText hover:bg-colorBrand transition-all hover:text-colorWhite hover:border-colorBrand hover:-translate-y-2 hover:shadow-xl active:shadow-sm active:-translate-y-1"
+      className="flex uppercase flex-col items-center gap-2 justify-center border-[1.5px] border-colorGreyText py-5 px-4 text-colorGreyText hover:bg-colorBrand transition-all hover:text-colorWhite hover:border-colorBrand hover:-translate-y-2 hover:shadow-xl active:shadow-sm active:-translate-y-1"
     >
       <span className="font-extrabold text-[1.5rem] 2xl:text-[1.6rem] leading-[1]">
         {name}
