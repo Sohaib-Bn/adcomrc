@@ -40,7 +40,7 @@ function Open({ children, opens }) {
   return cloneElement(children, { onClick: () => handleOpen(opens) });
 }
 
-function Window({ children, name, maxWidth = "750px", closeButton = true }) {
+function Window({ children, name, maxWidth = "800px", closeButton = true }) {
   const { opens, handleClose } = useContext(ModalContext);
   const windowStyle = { ...style, maxWidth };
 
