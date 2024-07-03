@@ -3,7 +3,7 @@ import supabase from "./supabase";
 export async function getCenters() {
   let { data, error } = await supabase
     .from("centers")
-    .select("id,name,url")
+    .select("id,name,url,type,subTo")
     .order("id", { ascending: true });
 
   if (error) {

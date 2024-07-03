@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FaUser, FaLock } from "react-icons/fa6";
-import { useLogin } from "./useLogin";
+import { useLogin } from "../features/authentication/useLogin";
 import SpinnerMini from "../ui/SpinnerMini";
 
 function Login() {

@@ -22,6 +22,11 @@
     font-family: "Tajawal", sans-serif;
   }
 
+  .adminDashbord input:focus,
+  .adminDashbord select:focus {
+    border: solid 1px #e54f35;
+  }
+
   input,
   button,
   textarea,

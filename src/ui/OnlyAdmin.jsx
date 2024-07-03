@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import { useUser } from "./useUser";
-import SpinnerFullPage from "../ui/SpinnerFullPage";
+import { useUser } from "../features/authentication/useUser";
+import SpinnerFullPage from "./SpinnerFullPage";
 
 function OnlyAdmin({ children }) {
   const navigate = useNavigate();

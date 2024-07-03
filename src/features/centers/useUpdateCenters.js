@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { updateCenters as updateCentersApi } from "../services/ApiCenters";
+import { updateCenters as updateCentersApi } from "../../services/ApiCenters";
 import toast from "react-hot-toast";
 
 export function useUpdateCenters() {

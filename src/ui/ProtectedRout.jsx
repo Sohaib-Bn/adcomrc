@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+
 import SpinnerFullPage from "./SpinnerFullPage";
-import { useUser } from "../pages/useUser";
+import { useUser } from "../features/authentication/useUser";
 
 function ProtectedRoute({ children }) {
   const navigate = useNavigate();

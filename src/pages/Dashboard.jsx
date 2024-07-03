@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom";
-import SpinnerFullPage from "../ui/SpinnerFullPage";
-import { useCenters } from "./useCenters";
-import { useUser } from "./useUser";
 import { CiLogout } from "react-icons/ci";
-import { useLogout } from "./useLogout";
+import { useLogout } from "../features/authentication/useLogout";
+import { SlSettings } from "react-icons/sl";
+
+import SpinnerFullPage from "../ui/SpinnerFullPage";
+import Modal from "../ui/Modal";
+import { useCenters } from "../features/centers/useCenters";
+import { useUser } from "../features/authentication/useUser";
 
 function Dashboard() {
   const { centers, isLoading } = useCenters();
@@ -14,13 +17,13 @@ function Dashboard() {
   if (isLoading) return <SpinnerFullPage />;
   return (
     <div className="relative h-screen">
-      <div className="flex flex-col gap-2 absolute z-20 right-6 top-5">
+      <div className="flex flex-col gap-3 absolute z-20 right-6 top-5">
         {isAdmin && (
           <Link
             to="/admin"
-            className="text-3xl text-colorBrand hover:translate-x-2 transition-all"
+            className="text-2xl flex justify-end text-colorBrand hover:translate-x-2 transition-all"
           >
-            &rarr;
+            <SlSettings />
           </Link>
         )}
         <button
@@ -71,7 +74,7 @@ function Dashboard() {
         <main className="flex-1 px-[9.5rem]  2xl:py-[2rem] flex items-center">
           <div className="grid grid-cols-4 gap-x-10 2xl:gap-x-12 gap-y-12 2xl:gap-y-20 w-full">
             {centers.map((center) => (
-              <CenterLink key={center.id} data={center} />
+              <Center key={center.id} data={center} />
             ))}
           </div>
         </main>
@@ -89,7 +92,13 @@ function Dashboard() {
 
 export default Dashboard;
 
-function CenterLink({ data: { name, url } }) {
+function Center({ data: { name, url, type, id } }) {
+  if (type === "link") return <CenterLink url={url} name={name} />;
+
+  if (type === "button") return <CenterButton id={id} url={url} name={name} />;
+}
+
+function CenterLink({ url, name }) {
   return (
     <a
       target="_blank"
@@ -104,5 +113,43 @@ function CenterLink({ data: { name, url } }) {
         center
       </span>
     </a>
+  );
+}
+
+function CenterButton({ url, name, id }) {
+  const { centers } = useCenters();
+
+  const subCenter = centers.filter((center) => center.subTo === id);
+
+  console.log(subCenter);
+
+  return (
+    <Modal>
+      <Modal.Open opens={name}>
+        <button
+          target="_blank"
+          rel="noreferrer"
+          href={url}
+          className="flex uppercase flex-col items-center gap-2 justify-center border-[1.5px] border-colorGreyText py-4 px-3 text-colorGreyText hover:bg-colorBrand transition-all hover:text-colorWhite hover:border-colorBrand hover:-translate-y-2 hover:shadow-xl active:shadow-sm active:-translate-y-1"
+        >
+          <span className="font-extrabold text-[1.5rem] 2xl:text-[1.6rem] leading-[1]">
+            {name}
+          </span>
+          <span className="text-[1.4rem] 2xl:text-[1.5rem] font-light leading-[1]">
+            center
+          </span>
+        </button>
+      </Modal.Open>
+      <Modal.Window name={name}>
+        <div className="p-8 flex flex-col gap-y-8">
+          <h1 className="font-bold text-5xl text-colorGreyText">{name}</h1>
+          <div className="grid grid-cols-3 gap-10 2xl:gap-x-12 2xl:gap-y-20 w-full">
+            {subCenter.map((center) => (
+              <CenterLink key={center.id} url={center.url} name={center.name} />
+            ))}
+          </div>
+        </div>
+      </Modal.Window>
+    </Modal>
   );
 }
