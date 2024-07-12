@@ -4,6 +4,12 @@ import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
 import { useCenters } from "../features/centers/useCenters";
 import { useUpdateUser } from "../features/authentication/useUpdateUser";
+import { IoArrowBack } from "react-icons/io5";
+// import { RiDashboardFill } from "react-icons/ri";
+// import { TiHome } from "react-icons/ti";
+// import { TiArrowBack } from "react-icons/ti";
+// import { IoReturnDownBackSharp } from "react-icons/io5";
+// import { GrReturn } from "react-icons/gr";
 
 import Spinner from "../ui/Spinner";
 import Signup from "../features/authentication/Signup";
@@ -32,8 +38,12 @@ function Admin() {
   return (
     <div className="adminDashbord">
       <header className="py-6 px-[9rem] flex items-center justify-between border-[1px]">
-        <Link to="/">
-          <img className="h-[4rem] 2xl:h-[5.8rem]" src="/logo.png" alt="logo" />
+        <Link
+          to="/"
+          className="text-4xl flex justify-end text-colorBrand hover:-translate-x-2 transition-all"
+        >
+          {/* <img className="h-10" src="/public/favicon.png" alt="home" /> */}
+          <IoArrowBack />
         </Link>
         <form onSubmit={handleSubmit} className="flex items-center gap-4">
           <div className="relative">
