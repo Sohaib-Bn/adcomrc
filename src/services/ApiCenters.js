@@ -1,22 +1,22 @@
 import supabase from "./supabase";
 
-export async function getCenters() {
+export async function getCenters(jobTitle) {
   let { data, error } = await supabase
-    .from("centers")
+    .from(`centers-${jobTitle}`)
     .select("id,name,url,type,subTo")
     .order("id", { ascending: true });
 
   if (error) {
+    console.error(error);
     throw new Error(error.message);
   }
 
   return data;
 }
 
-export async function updateCenters({ id, url }) {
-  console.log(id, url);
+export async function updateCenters({ id, url, jobTitle }) {
   const { data, error } = await supabase
-    .from("centers")
+    .from(`centers-${jobTitle}`)
     .update({ url })
     .eq("id", id)
     .single();

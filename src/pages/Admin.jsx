@@ -13,7 +13,8 @@ import { IoArrowBack } from "react-icons/io5";
 
 import Spinner from "../ui/Spinner";
 import Signup from "../features/authentication/Signup";
-import UpdateCenters from "../features/centers/UpdateCenters";
+// import UpdateCenters from "../features/centers/UpdateCenters";
+import { useJobsTitle } from "../features/jobstitle/useJobsTitle";
 
 function Admin() {
   const [adminPassword, setAdminPassword] = useState("");
@@ -22,7 +23,11 @@ function Admin() {
     setShowPassword(!showPassword);
   };
 
-  const { isLoading } = useCenters();
+  const { isLoading: isLoading1 } = useCenters();
+  const { isLoading: isLoading2 } = useJobsTitle();
+
+  const isLoading = isLoading1 || isLoading2;
+
   const { isPending, updateUser } = useUpdateUser();
 
   const handleSubmit = function (e) {
@@ -70,16 +75,23 @@ function Admin() {
           </button>
         </form>
       </header>
-      <div className="py-4 px-[9rem] flex gap-40">
-        {isLoading && (
-          <div className="h-full w-full flex items-center justify-center">
-            <Spinner />
-          </div>
-        )}
+      {isLoading && (
+        <div className="h-full w-full flex items-center justify-center">
+          <Spinner />
+        </div>
+      )}
+      <div className="py-4 px-[9rem] grid grid-cols-2 gap-10">
         {!isLoading && (
           <>
             <Signup />
-            <UpdateCenters />
+            <div className="flex items-center justify-center">
+              <img
+                className="h-[23rem]"
+                src="/public/Untitled-2.png"
+                alt="signUpIllstration"
+              />
+            </div>
+            {/* <UpdateCenters /> */}
           </>
         )}
       </div>

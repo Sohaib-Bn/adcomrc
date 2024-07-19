@@ -1,12 +1,13 @@
 import supabase from "./supabase";
 
-export async function singupUser({ email, password, admin }) {
-  let { data, error } = await supabase.auth.signUp({
+export async function singupUser({ email, password, admin, jobTitle }) {
+  const { data: user, error } = await supabase.auth.signUp({
     email: email,
     password: password,
     options: {
       data: {
         admin: admin,
+        jobTitle: jobTitle,
       },
     },
   });
@@ -16,11 +17,11 @@ export async function singupUser({ email, password, admin }) {
     throw new Error(error.message);
   }
 
-  return data;
+  return user;
 }
 
 export async function loginUser({ email, password }) {
-  let { data, error } = await supabase.auth.signInWithPassword({
+  const { data, error } = await supabase.auth.signInWithPassword({
     email: email,
     password: password,
   });

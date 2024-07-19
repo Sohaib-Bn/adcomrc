@@ -15,6 +15,7 @@ export function useUser() {
     isLoading,
     user,
     error,
+    jobTitle: user?.user_metadata?.jobTitle,
     isAdmin: user?.user_metadata?.admin,
     isAuthonticated: user?.role === "authenticated",
   };

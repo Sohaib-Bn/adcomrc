@@ -2,15 +2,15 @@ import { Link } from "react-router-dom";
 import { CiLogout } from "react-icons/ci";
 import { useLogout } from "../features/authentication/useLogout";
 import { SlSettings } from "react-icons/sl";
-
-import SpinnerFullPage from "../ui/SpinnerFullPage";
-import Modal from "../ui/Modal";
 import { useCenters } from "../features/centers/useCenters";
 import { useUser } from "../features/authentication/useUser";
 
+import SpinnerFullPage from "../ui/SpinnerFullPage";
+import Modal from "../ui/Modal";
+
 function Dashboard() {
-  const { centers, isLoading } = useCenters();
-  const { isAdmin } = useUser();
+  const { isAdmin, jobTitle } = useUser();
+  const { centers, isLoading } = useCenters(jobTitle);
 
   const { isPending, logout } = useLogout();
 
@@ -71,12 +71,19 @@ function Dashboard() {
             />
           </Link>
         </header>
-        <main className="flex-1 px-[9.5rem]  2xl:py-[2rem] flex items-center">
-          <div className="grid grid-cols-4 gap-x-10 2xl:gap-x-12 gap-y-12 2xl:gap-y-20 w-full">
-            {centers.map((center) => (
-              <Center key={center.id} data={center} />
-            ))}
-          </div>
+        <main className="flex-1 px-[9.5rem] 2xl:py-[2rem] flex items-center">
+          {Boolean(!centers.length) && !isLoading && (
+            <div className="m-auto text-2xl">
+              There is no data to show at the moment
+            </div>
+          )}
+          {Boolean(centers.length) && (
+            <div className="grid grid-cols-4 gap-x-10 2xl:gap-x-12 gap-y-12 2xl:gap-y-20 w-full">
+              {centers?.map((center) => (
+                <Center key={center.id} data={center} />
+              ))}
+            </div>
+          )}
         </main>
         <footer className="flex items-center justify-center px-3 p-[3rem]">
           <div className="border-b-8 border-colorBrand leading-[1]">
@@ -119,9 +126,7 @@ function CenterLink({ url, name }) {
 function CenterButton({ url, name, id }) {
   const { centers } = useCenters();
 
-  const subCenter = centers.filter((center) => center.subTo === id);
-
-  console.log(subCenter);
+  const subCenter = centers?.filter((center) => center.subTo === id) || [];
 
   return (
     <Modal>

@@ -1,18 +1,21 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useCenters } from "./useCenters";
 import { useUpdateCenters } from "./useUpdateCenters";
 
 import SpinnerMini from "../../ui/SpinnerMini";
 
 function UpdateCenters() {
-  const { centers, isLoading } = useCenters();
+  // const { centers, isLoading } = useCenters();
+  const { isLoading, centers } = { centers: [], isLoading: false };
   const [currUrl, setCurrUrl] = useState("");
   const [currId, setCurrId] = useState("");
   const [newUrl, setNewUrl] = useState("");
 
-  const centersLink = centers.filter((center) => center.type !== "button");
-
   const { isPending: isUpdating, updateCenters } = useUpdateCenters();
+
+  const centersLink = useMemo(() => {
+    return centers?.filter((center) => center.type !== "button");
+  }, [centers]);
 
   useEffect(() => {
     if (!currUrl && centersLink && centersLink.length > 0) {
