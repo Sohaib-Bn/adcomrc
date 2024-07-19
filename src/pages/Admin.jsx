@@ -87,7 +87,7 @@ function Admin() {
             <div className="flex items-center justify-center">
               <img
                 className="h-[23rem]"
-                src="/public/Untitled-2.png"
+                src="/Untitled-2.png"
                 alt="signUpIllstration"
               />
             </div>
