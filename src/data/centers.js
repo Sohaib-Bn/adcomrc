@@ -8,3 +8,9 @@ export const CENTERS = [
   { label: "learning", link: "/" },
   { label: "consulting", link: "/" },
 ];
+
+export const MARKETSOPTIONS = {
+  dz: { name: "ALGERIA", marketCode: "dz" },
+  gcc: { name: "GCC", marketCode: "sa" },
+  africa: { name: "AFRICA", marketCode: "sn" },
+};

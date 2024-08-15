@@ -7,10 +7,14 @@ import { useUser } from "../features/authentication/useUser";
 
 import SpinnerFullPage from "../ui/SpinnerFullPage";
 import Modal from "../ui/Modal";
+import MarketChanger from "../ui/MarketChanger";
+import { useAppContext } from "../context/AppContext";
 
 function Dashboard() {
   const { isAdmin, jobTitle } = useUser();
-  const { centers, isLoading } = useCenters(jobTitle);
+  const { market } = useAppContext();
+
+  const { centers, isLoading } = useCenters(jobTitle, market);
 
   const { isPending, logout } = useLogout();
 
@@ -35,11 +39,11 @@ function Dashboard() {
         </button>
       </div>
       <div>
-        <img
+        {/* <img
           className="h-[16rem] 2xl:h-[20rem] absolute left-0 top-0"
           src="/Untitled-5.png"
           alt="bg"
-        />
+        /> */}
         <img
           className="h-[4rem] 2xl:h-[6rem] absolute right-[6.5rem] top-[3rem] 2xl:top-[4.3rem]"
           src="/Untitled-6.png"
@@ -62,7 +66,10 @@ function Dashboard() {
         />
       </div>
       <div className="z-10 relative h-screen flex flex-col">
-        <header className="flex items-center justify-center px-3 py-[3rem] 2xl:py-[3.9rem]">
+        <header className="relative flex items-center justify-center px-3 py-[3rem] 2xl:py-[3.9rem]">
+          <div className="absolute left-[1.5rem] top-[1.5rem]">
+            <MarketChanger />
+          </div>
           <Link to="/">
             <img
               className="h-[5rem] 2xl:h-[5.8rem]"
@@ -72,18 +79,23 @@ function Dashboard() {
           </Link>
         </header>
         <main className="flex-1 px-[9.5rem] 2xl:py-[2rem] flex items-center">
+          {(market === "gcc" || market === "africa") && (
+            <div className="m-auto text-2xl">Working on ...</div>
+          )}
           {Boolean(!centers.length) && !isLoading && (
             <div className="m-auto text-2xl">
               There is no data to show at the moment
             </div>
           )}
-          {Boolean(centers.length) && (
-            <div className="grid grid-cols-4 gap-x-10 2xl:gap-x-12 gap-y-12 2xl:gap-y-20 w-full">
-              {centers?.map((center) => (
-                <Center key={center.id} data={center} />
-              ))}
-            </div>
-          )}
+          {Boolean(centers.length) &&
+            market !== "gcc" &&
+            market !== "africa" && (
+              <div className="grid grid-cols-4 gap-x-10 2xl:gap-x-12 gap-y-12 2xl:gap-y-20 w-full">
+                {centers?.map((center) => (
+                  <Center key={center.id} data={center} />
+                ))}
+              </div>
+            )}
         </main>
         <footer className="flex items-center justify-center px-3 p-[3rem]">
           <div className="border-b-8 border-colorBrand leading-[1]">
