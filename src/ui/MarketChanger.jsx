@@ -22,7 +22,7 @@ export default function MarketChanger() {
     textTransform: "inherit",
     fontFamily: "inherit",
     fontWeight: "meduim",
-    fontSize: "1rem",
+    fontSize: "1.25rem",
 
     "&:hover": { backgroundColor: "#eae8e8" },
   };
@@ -79,7 +79,7 @@ export default function MarketChanger() {
             borderRadius: "3px",
             boxShadow: "0px 2px 6px 6px rgb(0 0 0 / 0.04)",
             backgroundColor: "#f9fafb",
-            fontSize: "0.85rem",
+            fontSize: "1.2rem",
           },
         }}
       >

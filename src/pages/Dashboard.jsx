@@ -44,11 +44,11 @@ function Dashboard() {
           src="/Untitled-5.png"
           alt="bg"
         /> */}
-        <img
+        {/* <img
           className="h-[4rem] 2xl:h-[6rem] absolute right-[6.5rem] top-[3rem] 2xl:top-[4.3rem]"
           src="/Untitled-6.png"
           alt="bg"
-        />
+        /> */}
         <img
           className="h-screen absolute right-0 top-0"
           src="/Untitled-3.png"
@@ -67,7 +67,7 @@ function Dashboard() {
       </div>
       <div className="z-10 relative h-screen flex flex-col">
         <header className="relative flex items-center justify-center px-3 py-[3rem] 2xl:py-[3.9rem]">
-          <div className="absolute left-[1.5rem] top-[1.5rem]">
+          <div className="absolute left-[2rem] top-[2rem]">
             <MarketChanger />
           </div>
           <Link to="/">
