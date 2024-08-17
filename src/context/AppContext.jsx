@@ -3,7 +3,7 @@ import { createContext, useContext, useState } from "react";
 const AppContext = createContext();
 
 function AppProvider({ children }) {
-  const [market, setMarket] = useState("dz");
+  const [market, setMarket] = useState(() => localStorage.getItem("market"));
   return (
     <AppContext.Provider value={{ market, setMarket }}>
       {children}

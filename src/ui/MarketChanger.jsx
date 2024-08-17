@@ -55,11 +55,28 @@ export default function MarketChanger() {
         onClick={handleClick}
         sx={buttonStyle}
       >
-        <span className={`fi fi-${MARKETSOPTIONS[market]?.marketCode}`} />
-        <span>{capitalize(MARKETSOPTIONS[market]?.name)}</span>
-        <span className="text-xl">
-          <RiArrowDropDownLine />
-        </span>
+        {!MARKETSOPTIONS[market].marketCode && (
+          <>
+            <img
+              className="w-6"
+              src="/public/favicon-32x32.png"
+              alt="main icon"
+            />
+            <span>{capitalize(MARKETSOPTIONS[market]?.name)}</span>
+            <span className="text-xl">
+              <RiArrowDropDownLine />
+            </span>
+          </>
+        )}
+        {MARKETSOPTIONS[market].marketCode && (
+          <>
+            <span className={`fi fi-${MARKETSOPTIONS[market]?.marketCode}`} />
+            <span>{capitalize(MARKETSOPTIONS[market]?.name)}</span>
+            <span className="text-xl">
+              <RiArrowDropDownLine />
+            </span>
+          </>
+        )}
       </Button>
       <Menu
         id="basic-menu"
@@ -83,23 +100,48 @@ export default function MarketChanger() {
           },
         }}
       >
-        {Object.keys(MARKETSOPTIONS).map((mrkt) => (
-          <MenuItem
-            disabled={market === mrkt}
-            style={{
-              fontSize: "inherit",
-              fontFamily: "inherit",
-              display: "flex",
-              alignItems: "center",
-              gap: "1rem",
-            }}
-            onClick={(e) => handleClickEvent(e, mrkt)}
-            key={mrkt}
-          >
-            <span className={`fi fi-${MARKETSOPTIONS[mrkt]?.marketCode}`} />
-            <span>{MARKETSOPTIONS[mrkt].name}</span>
-          </MenuItem>
-        ))}
+        {Object.keys(MARKETSOPTIONS).map((mrkt) => {
+          if (!MARKETSOPTIONS[mrkt].marketCode) {
+            return (
+              <MenuItem
+                disabled={market === mrkt}
+                style={{
+                  fontSize: "inherit",
+                  fontFamily: "inherit",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "1rem",
+                }}
+                onClick={(e) => handleClickEvent(e, mrkt)}
+                key={mrkt}
+              >
+                <img
+                  className="w-6"
+                  src="/public/favicon-32x32.png"
+                  alt="main icon"
+                />
+                <span>{MARKETSOPTIONS[mrkt]?.name}</span>
+              </MenuItem>
+            );
+          }
+          return (
+            <MenuItem
+              disabled={market === mrkt}
+              style={{
+                fontSize: "inherit",
+                fontFamily: "inherit",
+                display: "flex",
+                alignItems: "center",
+                gap: "1rem",
+              }}
+              onClick={(e) => handleClickEvent(e, mrkt)}
+              key={mrkt}
+            >
+              <span className={`fi fi-${MARKETSOPTIONS[mrkt]?.marketCode}`} />
+              <span>{MARKETSOPTIONS[mrkt].name}</span>
+            </MenuItem>
+          );
+        })}
       </Menu>
     </div>
   );

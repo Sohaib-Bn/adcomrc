@@ -4,11 +4,11 @@ import { useLogout } from "../features/authentication/useLogout";
 import { SlSettings } from "react-icons/sl";
 import { useCenters } from "../features/centers/useCenters";
 import { useUser } from "../features/authentication/useUser";
+import { useAppContext } from "../context/AppContext";
 
 import SpinnerFullPage from "../ui/SpinnerFullPage";
 import Modal from "../ui/Modal";
 import MarketChanger from "../ui/MarketChanger";
-import { useAppContext } from "../context/AppContext";
 
 function Dashboard() {
   const { isAdmin, jobTitle } = useUser();

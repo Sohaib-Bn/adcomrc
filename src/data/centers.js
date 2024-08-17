@@ -10,6 +10,7 @@ export const CENTERS = [
 ];
 
 export const MARKETSOPTIONS = {
+  main: { name: "MAIN" },
   dz: { name: "ALGERIA", marketCode: "dz" },
   gcc: { name: "GCC", marketCode: "sa" },
   africa: { name: "AFRICA", marketCode: "sn" },
