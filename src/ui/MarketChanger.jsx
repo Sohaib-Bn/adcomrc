@@ -57,11 +57,7 @@ export default function MarketChanger() {
       >
         {!MARKETSOPTIONS[market].marketCode && (
           <>
-            <img
-              className="w-6"
-              src="/public/favicon-32x32.png"
-              alt="main icon"
-            />
+            <img className="w-6" src="/favicon-32x32.png" alt="main icon" />
             <span>{capitalize(MARKETSOPTIONS[market]?.name)}</span>
             <span className="text-xl">
               <RiArrowDropDownLine />
@@ -115,11 +111,7 @@ export default function MarketChanger() {
                 onClick={(e) => handleClickEvent(e, mrkt)}
                 key={mrkt}
               >
-                <img
-                  className="w-6"
-                  src="/public/favicon-32x32.png"
-                  alt="main icon"
-                />
+                <img className="w-6" src="/favicon-32x32.png" alt="main icon" />
                 <span>{MARKETSOPTIONS[mrkt]?.name}</span>
               </MenuItem>
             );

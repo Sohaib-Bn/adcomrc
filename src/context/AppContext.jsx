@@ -3,7 +3,9 @@ import { createContext, useContext, useState } from "react";
 const AppContext = createContext();
 
 function AppProvider({ children }) {
-  const [market, setMarket] = useState(() => localStorage.getItem("market"));
+  const [market, setMarket] = useState(
+    () => localStorage.getItem("market") || "main"
+  );
   return (
     <AppContext.Provider value={{ market, setMarket }}>
       {children}
