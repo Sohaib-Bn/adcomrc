@@ -22,7 +22,7 @@ function Dashboard() {
   if (isLoading) return <SpinnerFullPage />;
   return (
     <div className="relative h-screen">
-      <div className="flex flex-col gap-3 absolute z-20 left-6 bottom-5">
+      <div className="flex justify-between flex-row-reverse w-[95%] gap-3 absolute z-20 left-6 bottom-5">
         {isAdmin && (
           <Link
             to="/admin"
