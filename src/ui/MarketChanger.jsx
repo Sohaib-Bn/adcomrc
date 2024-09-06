@@ -46,15 +46,20 @@ export default function MarketChanger() {
     setMarket(mrkt);
     localStorage.setItem("market", mrkt);
     if (mrkt === "worldwide") return;
-    setActivity(
-      MARKETSOPTIONS[mrkt]?.activities[0]?.brands?.[0] ||
-        MARKETSOPTIONS[mrkt]?.activities[0]?.activity
-    );
+    setActivity(MARKETSOPTIONS[mrkt]?.activities[0]?.activity);
     localStorage.setItem(
       "activity",
-      MARKETSOPTIONS[mrkt]?.activities[0]?.brands?.[0] ||
-        MARKETSOPTIONS[mrkt]?.activities[0]?.activity
+      MARKETSOPTIONS[mrkt]?.activities[0]?.activity
     );
+    // setActivity(
+    //   MARKETSOPTIONS[mrkt]?.activities[0]?.brands?.[0] ||
+    //     MARKETSOPTIONS[mrkt]?.activities[0]?.activity
+    // );
+    // localStorage.setItem(
+    //   "activity",
+    //   MARKETSOPTIONS[mrkt]?.activities[0]?.brands?.[0] ||
+    //     MARKETSOPTIONS[mrkt]?.activities[0]?.activity
+    // );
   }
 
   React.useEffect(() => {

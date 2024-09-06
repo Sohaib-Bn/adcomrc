@@ -12,6 +12,7 @@ const tailwindConfig = {
         colorWhite: "#FFFF",
         colorBrandHover: "#c42f1b",
         colorError: "#F44336",
+        colorGreyLight: "#E8E7E8",
       },
     },
   },

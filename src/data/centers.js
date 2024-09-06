@@ -26,9 +26,4 @@ export const MARKETSOPTIONS = {
     marketCode: "sa",
     activities: [{ activity: "activity 01" }],
   },
-  africa: {
-    name: "AFRICA",
-    marketCode: "sn",
-    activities: [],
-  },
 };

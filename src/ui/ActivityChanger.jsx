@@ -10,6 +10,19 @@ import "/node_modules/flag-icons/css/flag-icons.min.css";
 import { useAppContext } from "../context/AppContext";
 import { PiArrowSquareInFill } from "react-icons/pi";
 import { NestedMenuItem } from "mui-nested-menu";
+import { MdOutlineKeyboardArrowRight } from "react-icons/md";
+
+const menuStyle = {
+  style: {
+    padding: "0",
+    minWidth: "150px",
+    transform: "translate(-15px,10px)",
+    borderRadius: "3px",
+    boxShadow: "0px 2px 6px 6px rgb(0 0 0 / 0.04)",
+    backgroundColor: "#f9fafb",
+    fontSize: "1.2rem",
+  },
+};
 
 export default function ActivityChanger() {
   const { market, activity, setActivity } = useAppContext();
@@ -33,18 +46,6 @@ export default function ActivityChanger() {
     "&:hover": { backgroundColor: "#eae8e8" },
   };
 
-  const menuStyle = {
-    style: {
-      padding: "0",
-      minWidth: "150px",
-      transform: "translate(-15px,10px)",
-      borderRadius: "3px",
-      boxShadow: "0px 2px 6px 6px rgb(0 0 0 / 0.04)",
-      backgroundColor: "#f9fafb",
-      fontSize: "1.2rem",
-    },
-  };
-
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -56,6 +57,8 @@ export default function ActivityChanger() {
   };
 
   function handleClickEvent(e, activity) {
+    console.log(activity);
+
     handleClose();
     setActivity(activity);
     localStorage.setItem("activity", activity);
@@ -114,16 +117,12 @@ export default function ActivityChanger() {
         {MARKETSOPTIONS[market].activities.map((act) => {
           if (act.brands) {
             return (
-              <NestedMenuItem
-                label={act.activity.toUpperCase()}
-                parentMenuOpen={anchorEl}
-                style={{
-                  fontSize: "inherit",
-                  fontFamily: "inherit",
-                  alignItems: "center",
-                }}
+              <NestedMenu
+                act={act}
+                anchorEl={anchorEl}
+                handleClickEvent={handleClickEvent}
                 key={act.activity}
-                PaperProps={menuStyle}
+                activity={activity}
               >
                 <div className="flex flex-col gap-1 text-[1.2rem]">
                   {act.brands.map((brand) => {
@@ -148,7 +147,7 @@ export default function ActivityChanger() {
                     );
                   })}
                 </div>
-              </NestedMenuItem>
+              </NestedMenu>
             );
           }
           return (
@@ -169,6 +168,41 @@ export default function ActivityChanger() {
           );
         })}
       </Menu>
+    </div>
+  );
+}
+
+function NestedMenu({ children, act, anchorEl, handleClickEvent, activity }) {
+  const ref = React.useRef(null);
+
+  React.useEffect(() => {
+    ref.current
+      .querySelectorAll("li p")
+      .forEach((p) => p.classList.remove("css-3wb1p2-MuiTypography-root"));
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      className={`${activity === act.activity ? "bg-colorGreyLight" : ""}`}
+    >
+      <NestedMenuItem
+        // disabled={activity === act.activity}
+        label={act.activity.toUpperCase()}
+        rightIcon={<MdOutlineKeyboardArrowRight />}
+        parentMenuOpen={anchorEl}
+        sx={{
+          fontSize: "inherit",
+          fontFamily: "inherit",
+          paddingRight: "16px",
+          paddingLeft: "16px",
+          gap: "0.5rem",
+        }}
+        PaperProps={menuStyle}
+        onClick={(e) => handleClickEvent(e, act.activity)}
+      >
+        {children}
+      </NestedMenuItem>
     </div>
   );
 }
