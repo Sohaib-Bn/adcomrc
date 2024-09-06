@@ -1,6 +1,7 @@
 import supabase from "./supabase";
 
 export async function getCenters(jobTitle, market, activity) {
+  if (!jobTitle || !market || !activity) return;
   let activityFormated;
   let schema = `${market}-${activityFormated}`;
 
