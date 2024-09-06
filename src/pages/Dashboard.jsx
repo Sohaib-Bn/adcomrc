@@ -9,19 +9,20 @@ import { useAppContext } from "../context/AppContext";
 import SpinnerFullPage from "../ui/SpinnerFullPage";
 import Modal from "../ui/Modal";
 import MarketChanger from "../ui/MarketChanger";
+import ActivityChanger from "../ui/ActivityChanger";
 
 function Dashboard() {
   const { isAdmin, jobTitle } = useUser();
-  const { market } = useAppContext();
+  const { market, activity } = useAppContext();
 
-  const { centers, isLoading } = useCenters(jobTitle, market);
+  const { centers, isLoading } = useCenters(jobTitle, market, activity);
 
   const { isPending, logout } = useLogout();
 
   if (isLoading) return <SpinnerFullPage />;
   return (
     <div className="relative h-screen">
-      <div className="flex flex-col gap-3 absolute z-20 right-6 top-5">
+      <div className="flex flex-col gap-3 absolute z-20 left-6 bottom-5">
         {isAdmin && (
           <Link
             to="/admin"
@@ -67,7 +68,8 @@ function Dashboard() {
       </div>
       <div className="z-10 relative h-screen flex flex-col">
         <header className="relative flex items-center justify-center px-3 py-[3rem] 2xl:py-[3.9rem]">
-          <div className="absolute left-[2rem] top-[2rem]">
+          <div className="absolute left-[2rem] top-[2rem] grid grid-cols-2 gap-4 w-[95%] justify-between">
+            {market !== "worldwide" && <ActivityChanger />}
             <MarketChanger />
           </div>
           <Link to="/">
@@ -108,8 +110,6 @@ function Dashboard() {
     </div>
   );
 }
-
-export default Dashboard;
 
 function Center({ data: { name, url, type, id } }) {
   if (type === "link") return <CenterLink url={url} name={name} />;
@@ -191,3 +191,5 @@ function CenterSubLink({ url, name }) {
     </a>
   );
 }
+
+export default Dashboard;

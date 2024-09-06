@@ -1,8 +1,15 @@
 import supabase from "./supabase";
 
-export async function getCenters(jobTitle, market) {
-  // let schema = market;
-  // if (market === "dz") schema = "public";
+export async function getCenters(jobTitle, market, activity) {
+  let activityFormated;
+  let schema = `${market}-${activityFormated}`;
+
+  if (activity) {
+    activityFormated = activity?.replace(" ", "-");
+  }
+
+  if (market === "main") schema = "public";
+
   let { data, error } = await supabase
     .from(`centers-${jobTitle}`)
     .select("id,name,url,type,subTo")

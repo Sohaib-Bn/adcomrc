@@ -27,7 +27,9 @@ export default function MarketChanger() {
     "&:hover": { backgroundColor: "#eae8e8" },
   };
 
-  const { market, setMarket } = useAppContext();
+  const ref = React.useRef(null);
+
+  const { market, setMarket, setActivity } = useAppContext();
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -43,10 +45,24 @@ export default function MarketChanger() {
     handleClose();
     setMarket(mrkt);
     localStorage.setItem("market", mrkt);
+    if (mrkt === "worldwide") return;
+    setActivity(
+      MARKETSOPTIONS[mrkt]?.activities[0]?.brands?.[0] ||
+        MARKETSOPTIONS[mrkt]?.activities[0]?.activity
+    );
+    localStorage.setItem(
+      "activity",
+      MARKETSOPTIONS[mrkt]?.activities[0]?.brands?.[0] ||
+        MARKETSOPTIONS[mrkt]?.activities[0]?.activity
+    );
   }
 
+  React.useEffect(() => {
+    ref.current.querySelector("button").classList.remove("MuiButtonBase-root");
+  }, []);
+
   return (
-    <div className="relative z-100">
+    <div ref={ref} className="relative z-100 col-start-2 justify-self-end">
       <Button
         id="basic-button"
         aria-controls={open ? "basic-menu" : undefined}
@@ -57,7 +73,7 @@ export default function MarketChanger() {
       >
         {!MARKETSOPTIONS[market].marketCode && (
           <>
-            <img className="w-6" src="/favicon-32x32.png" alt="main icon" />
+            <span className="text-2xl">🌍</span>
             <span>{capitalize(MARKETSOPTIONS[market]?.name)}</span>
             <span className="text-xl">
               <RiArrowDropDownLine />
@@ -107,11 +123,12 @@ export default function MarketChanger() {
                   display: "flex",
                   alignItems: "center",
                   gap: "1rem",
+                  paddingLeft: "0.6rem",
                 }}
                 onClick={(e) => handleClickEvent(e, mrkt)}
                 key={mrkt}
               >
-                <img className="w-6" src="/favicon-32x32.png" alt="main icon" />
+                <span className="text-2xl">🌍</span>
                 <span>{MARKETSOPTIONS[mrkt]?.name}</span>
               </MenuItem>
             );

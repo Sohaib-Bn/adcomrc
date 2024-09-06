@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from "react";
+import { MARKETSOPTIONS } from "../data/centers";
 
 const AppContext = createContext();
 
@@ -6,8 +7,14 @@ function AppProvider({ children }) {
   const [market, setMarket] = useState(
     () => localStorage.getItem("market") || "main"
   );
+
+  const [activity, setActivity] = useState(
+    () =>
+      localStorage.getItem("activity") || MARKETSOPTIONS[market]?.activities[0]
+  );
+
   return (
-    <AppContext.Provider value={{ market, setMarket }}>
+    <AppContext.Provider value={{ market, setMarket, activity, setActivity }}>
       {children}
     </AppContext.Provider>
   );

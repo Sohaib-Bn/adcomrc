@@ -10,8 +10,25 @@ export const CENTERS = [
 ];
 
 export const MARKETSOPTIONS = {
-  main: { name: "MAIN" },
-  dz: { name: "ALGERIA", marketCode: "dz" },
-  gcc: { name: "GCC", marketCode: "sa" },
-  africa: { name: "AFRICA", marketCode: "sn" },
+  worldwide: {
+    name: "WORLDWIDE",
+  },
+  dz: {
+    name: "ALGERIA",
+    marketCode: "dz",
+    activities: [
+      { activity: "activity 02", brands: ["natumiel"] },
+      { activity: "activity 06", brands: ["gromiel"] },
+    ],
+  },
+  gcc: {
+    name: "GCC",
+    marketCode: "sa",
+    activities: [{ activity: "activity 01" }],
+  },
+  africa: {
+    name: "AFRICA",
+    marketCode: "sn",
+    activities: [],
+  },
 };
