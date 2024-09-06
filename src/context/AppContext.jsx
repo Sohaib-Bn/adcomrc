@@ -5,12 +5,12 @@ const AppContext = createContext();
 
 function AppProvider({ children }) {
   const [market, setMarket] = useState(
-    () => localStorage.getItem("market") || "main"
+    () => localStorage.getItem("market") || "worldwide"
   );
 
   const [activity, setActivity] = useState(
     () =>
-      localStorage.getItem("activity") || MARKETSOPTIONS[market]?.activities[0]
+      localStorage.getItem("activity") || MARKETSOPTIONS["dz"]?.activities[0]
   );
 
   return (

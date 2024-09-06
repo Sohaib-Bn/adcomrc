@@ -8,8 +8,8 @@ import { MARKETSOPTIONS } from "../data/centers";
 
 import "/node_modules/flag-icons/css/flag-icons.min.css";
 import { useAppContext } from "../context/AppContext";
-import NestedMenuItem from "material-ui-nested-menu-item";
 import { PiArrowSquareInFill } from "react-icons/pi";
+import { NestedMenuItem } from "mui-nested-menu";
 
 export default function ActivityChanger() {
   const { market, activity, setActivity } = useAppContext();
