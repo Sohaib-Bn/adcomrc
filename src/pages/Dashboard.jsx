@@ -84,12 +84,12 @@ function Dashboard() {
           {(market === "gcc" || market === "africa") && (
             <div className="m-auto text-2xl">Working on ...</div>
           )}
-          {Boolean(!centers?.length) && !isLoading && (
+          {Boolean(!centers.length) && !isLoading && (
             <div className="m-auto text-2xl">
               There is no data to show at the moment
             </div>
           )}
-          {Boolean(centers?.length) &&
+          {Boolean(centers.length) &&
             market !== "gcc" &&
             market !== "africa" && (
               <div className="grid grid-cols-4 gap-x-10 2xl:gap-x-12 gap-y-12 2xl:gap-y-20 w-full">

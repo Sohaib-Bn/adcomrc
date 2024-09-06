@@ -1,7 +1,6 @@
 import supabase from "./supabase";
 
 export async function getCenters(jobTitle, market, activity) {
-  if (!jobTitle || !market || !activity) return;
   let activityFormated;
   let schema = `${market}-${activityFormated}`;
 
@@ -35,5 +34,6 @@ export async function updateCenters({ id, url, jobTitle }) {
     console.error(error);
     throw new Error("Centers could not be updated");
   }
+
   return data;
 }

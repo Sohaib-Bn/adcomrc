@@ -176,9 +176,9 @@ function NestedMenu({ children, act, anchorEl, handleClickEvent, activity }) {
   const ref = React.useRef(null);
 
   React.useEffect(() => {
-    ref.current
-      .querySelectorAll("li p")
-      .forEach((p) => p.classList.remove("css-3wb1p2-MuiTypography-root"));
+    ref.current.querySelectorAll("li p").forEach((p) => {
+      p.classList = "";
+    });
   }, []);
 
   return (
