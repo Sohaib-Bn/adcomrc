@@ -12,14 +12,16 @@ import MarketChanger from "../ui/MarketChanger";
 import ActivityChanger from "../ui/ActivityChanger";
 
 function Dashboard() {
-  const { isAdmin, jobTitle } = useUser();
-  const { market, activity } = useAppContext();
+  const { isAdmin } = useUser();
 
-  const { centers, isLoading } = useCenters(jobTitle, market, activity);
+  const { market } = useAppContext();
+
+  const { centers, isLoading } = useCenters();
 
   const { isPending, logout } = useLogout();
 
   if (isLoading) return <SpinnerFullPage />;
+
   return (
     <div className="relative h-screen">
       <div className="flex justify-between flex-row-reverse w-[95%] gap-3 absolute z-20 left-6 bottom-5">
@@ -69,7 +71,7 @@ function Dashboard() {
       <div className="z-10 relative h-screen flex flex-col">
         <header className="relative flex items-center justify-center px-3 py-[3rem] 2xl:py-[3.9rem]">
           <div className="absolute left-[2rem] top-[2rem] grid grid-cols-2 gap-4 w-[95%] justify-between">
-            {market !== "worldwide" && <ActivityChanger />}
+            {<ActivityChanger />}
             <MarketChanger />
           </div>
           <Link to="/">

@@ -7,6 +7,7 @@ export async function getCenters(jobTitle, market, activity) {
   if (activity) {
     activityFormated = activity?.replace(" ", "-");
   }
+
   if (market === "worldwide") schema = "public";
 
   let { data, error } = await supabase

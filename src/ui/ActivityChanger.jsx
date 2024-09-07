@@ -1,4 +1,3 @@
-import * as React from "react";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -11,12 +10,13 @@ import { useAppContext } from "../context/AppContext";
 import { PiArrowSquareInFill } from "react-icons/pi";
 import { NestedMenuItem } from "mui-nested-menu";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
+import { useEffect, useRef, useState } from "react";
 
 const menuStyle = {
   style: {
     padding: "0",
     minWidth: "150px",
-    transform: "translate(-15px,10px)",
+    transform: "translate(-5px,10px)",
     borderRadius: "3px",
     boxShadow: "0px 2px 6px 6px rgb(0 0 0 / 0.04)",
     backgroundColor: "#f9fafb",
@@ -26,9 +26,10 @@ const menuStyle = {
 
 export default function ActivityChanger() {
   const { market, activity, setActivity } = useAppContext();
-  const ref = React.useRef(null);
+  const ref = useRef(null);
 
   const buttonStyle = {
+    // minWidth: "195px",
     padding: "0.7rem 1.6rem 0.7rem 2rem",
     color: "#444",
     backgroundColor: "#f7f7f7",
@@ -46,7 +47,7 @@ export default function ActivityChanger() {
     "&:hover": { backgroundColor: "#eae8e8" },
   };
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -57,14 +58,14 @@ export default function ActivityChanger() {
   };
 
   function handleClickEvent(e, activity) {
-    console.log(activity);
-
     handleClose();
+    if (!activity) return;
+
     setActivity(activity);
     localStorage.setItem("activity", activity);
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     ref.current.querySelector("button").classList.remove("MuiButtonBase-root");
   }, []);
 
@@ -173,9 +174,9 @@ export default function ActivityChanger() {
 }
 
 function NestedMenu({ children, act, anchorEl, handleClickEvent, activity }) {
-  const ref = React.useRef(null);
+  const ref = useRef(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     ref.current.querySelectorAll("li p").forEach((p) => {
       p.classList = "";
     });
@@ -187,7 +188,6 @@ function NestedMenu({ children, act, anchorEl, handleClickEvent, activity }) {
       className={`${activity === act.activity ? "bg-colorGreyLight" : ""}`}
     >
       <NestedMenuItem
-        // disabled={activity === act.activity}
         label={act.activity.toUpperCase()}
         rightIcon={<MdOutlineKeyboardArrowRight />}
         parentMenuOpen={anchorEl}
@@ -198,7 +198,6 @@ function NestedMenu({ children, act, anchorEl, handleClickEvent, activity }) {
           paddingLeft: "16px",
           gap: "0.5rem",
         }}
-        PaperProps={menuStyle}
         onClick={(e) => handleClickEvent(e, act.activity)}
       >
         {children}

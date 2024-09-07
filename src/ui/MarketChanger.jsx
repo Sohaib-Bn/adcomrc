@@ -43,6 +43,7 @@ export default function MarketChanger() {
 
   function handleClickEvent(e, mrkt) {
     handleClose();
+    if (!mrkt) return;
     setMarket(mrkt);
     localStorage.setItem("market", mrkt);
     if (mrkt === "worldwide") return;
@@ -109,7 +110,7 @@ export default function MarketChanger() {
           style: {
             padding: "0",
             minWidth: "120px",
-            transform: "translate(-15px,10px)",
+            transform: "translate(-5px,10px)",
             borderRadius: "3px",
             boxShadow: "0px 2px 6px 6px rgb(0 0 0 / 0.04)",
             backgroundColor: "#f9fafb",
