@@ -10,7 +10,8 @@ function AppProvider({ children }) {
 
   const [activity, setActivity] = useState(
     () =>
-      localStorage.getItem("activity") || MARKETSOPTIONS["dz"]?.activities[0]
+      localStorage.getItem("activity") ||
+      MARKETSOPTIONS["dz"]?.activities[0].activity
   );
 
   return (

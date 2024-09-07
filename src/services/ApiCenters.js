@@ -1,14 +1,18 @@
 import supabase from "./supabase";
 
-export async function getCenters(jobTitle, market, activity) {
-  let activityFormated;
-  let schema = `${market}-${activityFormated}`;
+export async function getCenters(
+  jobTitle = "CEO",
+  market = "woldwide",
+  activity = "overview"
+) {
+  // let activityFormated;
+  // let schema = `${market}-${activityFormated}`;
 
-  if (activity) {
-    activityFormated = activity?.replace(" ", "-");
-  }
+  // if (activity) {
+  //   activityFormated = activity?.replace(" ", "-");
+  // }
 
-  if (market === "worldwide") schema = "public";
+  // if (market === "worldwide") schema = "public";
 
   let { data, error } = await supabase
     .from(`centers-${jobTitle}`)

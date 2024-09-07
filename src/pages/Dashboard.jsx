@@ -41,37 +41,11 @@ function Dashboard() {
           <CiLogout />
         </button>
       </div>
-      <div>
-        {/* <img
-          className="h-[16rem] 2xl:h-[20rem] absolute left-0 top-0"
-          src="/Untitled-5.png"
-          alt="bg"
-        /> */}
-        {/* <img
-          className="h-[4rem] 2xl:h-[6rem] absolute right-[6.5rem] top-[3rem] 2xl:top-[4.3rem]"
-          src="/Untitled-6.png"
-          alt="bg"
-        /> */}
-        <img
-          className="h-screen absolute right-0 top-0"
-          src="/Untitled-3.png"
-          alt="bg"
-        />
-        <img
-          className="h-[2rem] 2xl:h-[2.3rem] absolute right-[8rem] 2xl:right-[5.8rem] bottom-[2.5rem] 2xl:bottom-[6rem]"
-          src="/Untitled-7.png"
-          alt="bg"
-        />
-        <img
-          className="h-[1.4rem] 2xl:h-[1.6rem] absolute left-[8rem] bottom-[4rem] 2xl:bottom-[7rem]"
-          src="/Untitled-4.png"
-          alt="bg"
-        />
-      </div>
+
       <div className="z-10 relative h-screen flex flex-col">
         <header className="relative flex items-center justify-center px-3 py-[3rem] 2xl:py-[3.9rem]">
           <div className="absolute left-[2rem] top-[2rem] grid grid-cols-2 gap-4 w-[95%] justify-between">
-            {<ActivityChanger />}
+            <ActivityChanger />
             <MarketChanger />
           </div>
           <Link to="/">
@@ -108,6 +82,23 @@ function Dashboard() {
             </h1>
           </div>
         </footer>
+      </div>
+      <div>
+        <img
+          className="h-screen absolute right-0 top-0"
+          src="/Untitled-3.png"
+          alt="bg"
+        />
+        <img
+          className="h-[2rem] 2xl:h-[2.3rem] absolute right-[8rem] 2xl:right-[5.8rem] bottom-[2.5rem] 2xl:bottom-[6rem]"
+          src="/Untitled-7.png"
+          alt="bg"
+        />
+        <img
+          className="h-[1.4rem] 2xl:h-[1.6rem] absolute left-[8rem] bottom-[4rem] 2xl:bottom-[7rem]"
+          src="/Untitled-4.png"
+          alt="bg"
+        />
       </div>
     </div>
   );

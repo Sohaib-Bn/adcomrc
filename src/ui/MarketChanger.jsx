@@ -52,15 +52,6 @@ export default function MarketChanger() {
       "activity",
       MARKETSOPTIONS[mrkt]?.activities[0]?.activity
     );
-    // setActivity(
-    //   MARKETSOPTIONS[mrkt]?.activities[0]?.brands?.[0] ||
-    //     MARKETSOPTIONS[mrkt]?.activities[0]?.activity
-    // );
-    // localStorage.setItem(
-    //   "activity",
-    //   MARKETSOPTIONS[mrkt]?.activities[0]?.brands?.[0] ||
-    //     MARKETSOPTIONS[mrkt]?.activities[0]?.activity
-    // );
   }
 
   React.useEffect(() => {
