@@ -25,7 +25,7 @@ function Signup() {
       {
         email: employeeEmail,
         password: employeePassword,
-        admin: jobsTitle === "CEO" ? "admin" : admin,
+        admin: jobTitle === "CEO" ? true : admin,
         jobTitle: jobTitle,
       },
       {
