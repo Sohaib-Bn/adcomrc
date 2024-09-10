@@ -14,6 +14,7 @@ export const MARKETSOPTIONS = {
     name: "WORLDWIDE",
     activities: [
       { activity: "overview" },
+      { activity: "activity 01" },
       { activity: "activity 02" },
       { activity: "activity 06" },
     ],
